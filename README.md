@@ -25,4 +25,5 @@ Undoing migrations
 ```
 
 * Reviewed how Rails handles GET, POST, PATCH and DELETE
+* Learned about how Rails handles classes and inheritance
 *
