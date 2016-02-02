@@ -23,3 +23,6 @@ Undoing migrations
   $ bundle exec rake db:rollback
   $ bundle exec rake db:migrate VERSION=0
 ```
+
+* Reviewed how Rails handles GET, POST, PATCH and DELETE
+*
