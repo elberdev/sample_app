@@ -1,2 +1,6 @@
-# sample_app
-Hart's Ruby on Rails Tutorial chapter 03
+# Sample App
+
+Hartl's *Ruby on Rails Tutorial* chapter 03
+
+#### Takeaways
+*
