@@ -26,4 +26,5 @@ Undoing migrations
 
 * Reviewed how Rails handles GET, POST, PATCH and DELETE
 * Learned about how Rails handles classes and inheritance
-*
+* Learned about automatically-created tests in the tests/ directory
+* Learned how to run tests by using 'rake test' command
