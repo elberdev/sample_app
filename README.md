@@ -28,3 +28,4 @@ Undoing migrations
 * Learned about how Rails handles classes and inheritance
 * Learned about automatically-created tests in the tests/ directory
 * Learned how to run tests by using 'rake test' command
+* Intro to Test-Driven Development and writing own tests
