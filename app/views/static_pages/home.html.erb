@@ -1,7 +1,11 @@
+<!-- embedded ruby line that calls the provide function. It allows us to set a label 'title' with the value 'Home" -->
+<% provide(:title, "Home") %>
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home | The Ruby on Rails Tutorial Sample App</title>
+    <!-- use the yield function to insert :title -->
+    <title><%= yield(:title) %> | The Ruby on Rails Tutorial Sample App</title>
   </head>
   <body>
     <h1>Sample App</h1>
