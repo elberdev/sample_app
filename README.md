@@ -29,3 +29,6 @@ Undoing migrations
 * Learned about automatically-created tests in the tests/ directory
 * Learned how to run tests by using 'rake test' command
 * Intro to Test-Driven Development and writing own tests
+* Used guard and other gems to improve auto testing
+* Learned Ruby language syntax including method definitions
+* Used the application_helper module to define helper functions that can be used throughout the whole application
