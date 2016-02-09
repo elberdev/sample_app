@@ -32,3 +32,4 @@ Undoing migrations
 * Used guard and other gems to improve auto testing
 * Learned Ruby language syntax including method definitions
 * Used the application_helper module to define helper functions that can be used throughout the whole application
+* Learned about Ruby's own approach to Object Oriented design and inheritance
