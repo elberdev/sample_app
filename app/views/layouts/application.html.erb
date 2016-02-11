@@ -8,11 +8,28 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <!-- This is ruby's way of preventing a specific type of malicious web attack -->
     <%= csrf_meta_tags %>
+
+    <!--[if lt IE9]>
+      <script src="//cdnjs.cloudfare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
   </head>
   <body>
-
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "sample app", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home", '#' %></li>
+            <li><%= link_to "Help", '#' %></li>
+            <li><%= link_to "Log in", '#' %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
     <!-- This is where each page's specific individual code will go -->
-    <%= yield %>
-
+      <%= yield %>
+    </div>
   </body>
 </html>
