@@ -9,15 +9,23 @@
     <!-- This is ruby's way of preventing a specific type of malicious web attack -->
     <%= csrf_meta_tags %>
 
+    <!-- This following block is only executed if the site loads in a version of IE less than 9
+    meaning that it is not compatible with HTML5. The Javascript code is an HTML5 shim. -->
+
     <!--[if lt IE9]>
       <script src="//cdnjs.cloudfare.com/ajax/libs/html5shiv/r29/html5.min.js">
       </script>
     <![endif]-->
+
   </head>
   <body>
+
+    <!-- header for out plaintext title -->
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to "sample app", '#', id: "logo" %>
+
+        <!-- some links -->
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home", '#' %></li>
@@ -28,8 +36,10 @@
       </div>
     </header>
     <div class="container">
-    <!-- This is where each page's specific individual code will go -->
+
+      <!-- This is where each page's specific individual code will go -->
       <%= yield %>
+
     </div>
   </body>
 </html>
