@@ -35,3 +35,6 @@ Undoing migrations
 * Learned about Ruby's Symbol type
 * Learned to use Ruby blocks
 * Learned how to modify a built-in Ruby class (though this is discouraged, it is indeed possible)
+* Learned how to add html partials to the directory structure and load them using the render method
+* Learned how to add a custom CSS file to app/assets/stylesheets
+* Learned how to use Bootstrap with the bootstrap-sass gem 
