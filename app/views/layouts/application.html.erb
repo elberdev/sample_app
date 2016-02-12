@@ -8,33 +8,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <!-- This is ruby's way of preventing a specific type of malicious web attack -->
     <%= csrf_meta_tags %>
-
-    <!-- This following block is only executed if the site loads in a version of IE less than 9
-    meaning that it is not compatible with HTML5. The Javascript code is an HTML5 shim. -->
-
-    <!--[if lt IE9]>
-      <script src="//cdnjs.cloudfare.com/ajax/libs/html5shiv/r29/html5.min.js">
-      </script>
-    <![endif]-->
-
+    <!-- This renders the HTML5 shim partial for IE -->
+    <%= render 'layouts/shim' %>
   </head>
+
   <body>
-
-    <!-- header for our plaintext title. These CSS classes have special meaning to the Bootstrap framework. -->
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "sample app", '#', id: "logo" %>
-
-        <!-- some links -->
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", '#' %></li>
-            <li><%= link_to "Help", '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <!-- renders our header partial file -->
+    <%= render 'layouts/header' %>
     <div class="container">
 
       <!-- This is where each page's specific individual code will go -->
