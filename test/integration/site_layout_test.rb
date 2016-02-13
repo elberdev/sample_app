@@ -12,8 +12,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/home'
 
     # test all the links with method assert_select
-    # this first one has two links to test since there is also a picture
-    # that is linked to the root in addition to the regular link
+    # this first one has two links to test.
     assert_select "a[href=?]", root_path, count: 2
     assert_select "a[href=?]", help_path
     assert_select "a[href=?]", about_path
