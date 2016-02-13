@@ -37,4 +37,10 @@ Undoing migrations
 * Learned how to modify a built-in Ruby class (though this is discouraged, it is indeed possible)
 * Learned how to add html partials to the directory structure and load them using the render method
 * Learned how to add a custom CSS file to app/assets/stylesheets
-* Learned how to use Bootstrap with the bootstrap-sass gem 
+* Learned how to use Bootstrap with the bootstrap-sass gem
+* Learned about preprocessor engines and how to chain them
+* Learned about sass variable and nesting rules
+* Learned how to set up a file for integration tests using:
+```
+  $ rails generate integration_test name_of_new_test_file
+```
