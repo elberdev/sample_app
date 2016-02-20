@@ -1,27 +1,27 @@
 # Sample App
 
-Hartl's *Ruby on Rails Tutorial* chapter 03
+Hartl's *Ruby on Rails Tutorial* chapter 03 through 06
 
 #### Takeaways
 * Learned some commands for undoing things in Rails. For example:
 
 Undoing controller generation
 ```
-  $ rails generate controller StaticPages home help
-  $ rails destroy  controller StaticPages home help
+$ rails generate controller StaticPages home help
+$ rails destroy  controller StaticPages home help
 ```
 
 Undoing model generation
 ```
-  $ rails generate model User name:string email:string
-  $ rails destroy model User
+$ rails generate model User name:string email:string
+$ rails destroy model User
 ```
 
 Undoing migrations
 ```
-  $ bundle exec rake db:migrate
-  $ bundle exec rake db:rollback
-  $ bundle exec rake db:migrate VERSION=0
+$ bundle exec rake db:migrate
+$ bundle exec rake db:rollback
+$ bundle exec rake db:migrate VERSION=0
 ```
 
 * Reviewed how Rails handles GET, POST, PATCH and DELETE
@@ -41,6 +41,23 @@ Undoing migrations
 * Learned about preprocessor engines and how to chain them
 * Learned about sass variable and nesting rules
 * Learned how to set up a file for integration tests using:
+
 ```
   $ rails generate integration_test name_of_new_test_file
+```
+* Learned about regular expressions and [Rubular](http://www.rubular.com/), a website to check regular expressions
+* Learned about using regex to do basic validation of email.
+
+```
+VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+```
+* Learned how to add an index to a database column (for quicker searching like a hash).
+
+Example:
+```
+$ rails generate migration add_index_to_users_email
+```
+and in the db/migrate folder, find the migration file and define the change as follows:
+```
+    add_index :users, :email, unique: true
 ```
