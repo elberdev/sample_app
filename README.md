@@ -61,3 +61,4 @@ and in the db/migrate folder, find the migration file and define the change as f
 ```
     add_index :users, :email, unique: true
 ```
+* Learned how to user secure password to the user model
