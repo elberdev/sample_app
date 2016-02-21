@@ -22,6 +22,9 @@
 
       <!-- This is renders the footer partial -->
       <%= render 'layouts/footer' %>
+
+      <!-- We add a debugging display for development environment only -->
+      <%= debug(params) if Rails.env.develpment? %>
     </div>
   </body>
 </html>

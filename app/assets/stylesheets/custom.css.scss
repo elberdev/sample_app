@@ -7,6 +7,15 @@
 used to make the color more human-readable */
 $gray-medium-light: #eaeaea;
 
+/* nice formatting for debugging */
+/* mixins are a sass way of including the same formatting in multiple
+places on your stylesheet */
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 /* universal */
 
 body {
@@ -97,4 +106,14 @@ footer {
       margin-left: 15px;
     }
   }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }

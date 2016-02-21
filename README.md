@@ -62,3 +62,14 @@ and in the db/migrate folder, find the migration file and define the change as f
     add_index :users, :email, unique: true
 ```
 * Learned how to user secure password to the user model
+* Learned how to specify which environment you want to work with in console, server, and migrate commands:
+
+```
+$ rails console test
+```
+```
+$ rails server --environment production
+```
+```
+bundle exec rake db:migrate RAILS_ENV=production
+```
