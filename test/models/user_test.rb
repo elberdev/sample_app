@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   # this method creates a User instance variable for us to test
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
-                    password: "fubar.com", password_confirmation: "fubar.com")
+                    password: "foobar", password_confirmation: "foobar")
   end
 
   # this method tests if the user instance variable is valid according to our constraints
