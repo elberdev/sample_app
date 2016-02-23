@@ -43,7 +43,7 @@ $ bundle exec rake db:migrate VERSION=0
 * Learned how to set up a file for integration tests using:
 
 ```
-  $ rails generate integration_test name_of_new_test_file
+$ rails generate integration_test name_of_new_test_file
 ```
 * Learned about regular expressions and [Rubular](http://www.rubular.com/), a website to check regular expressions
 * Learned about using regex to do basic validation of email.
@@ -59,9 +59,9 @@ $ rails generate migration add_index_to_users_email
 ```
 and in the db/migrate folder, find the migration file and define the change as follows:
 ```
-    add_index :users, :email, unique: true
+add_index :users, :email, unique: true
 ```
-* Learned how to user secure password to the user model
+* Learned how to add secure password to the user model
 * Learned how to specify which environment you want to work with in console, server, and migrate commands:
 
 ```
@@ -74,3 +74,8 @@ $ rails server --environment production
 bundle exec rake db:migrate RAILS_ENV=production
 ```
 * Learned how to use the Byebug gem to create breakpoints and a debugging environment while running an app in the Rails server by simply adding the word 'debugger' to the Ruby code where I want the breakpoint to kick in.
+* Learned how to reset the database:
+
+```
+bundle exec rake db:migrate:reset
+```
