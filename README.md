@@ -73,3 +73,4 @@ $ rails server --environment production
 ```
 bundle exec rake db:migrate RAILS_ENV=production
 ```
+* Learned how to use the Byebug gem to create breakpoints and a debugging environment while running an app in the Rails server by simply adding the word 'debugger' to the Ruby code where I want the breakpoint to kick in.
