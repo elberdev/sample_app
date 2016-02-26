@@ -8,19 +8,24 @@
     it returns a form element specifically designed to help you set that element
     for the class instance you're trying to create -->
     <%= form_for(@user) do |f| %>
+
+      <!-- we're going to render an error message partial -->
+      <%= render 'shared/error_messages' %>
+
+      <!-- form-control is a tag with special meaning to Bootstrap -->
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: 'form-control' %>
 
       <!-- email_field will sometimes result in optimized experience for entering
       emails, like a particular keyboard on mobile for example -->
       <%= f.label :email %>
-      <%= f.email_field :email %>
+      <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>
-      <%= f.password_field :password %>
+      <%= f.password_field :password, class: 'form-control' %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
