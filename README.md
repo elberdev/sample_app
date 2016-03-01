@@ -79,3 +79,9 @@ bundle exec rake db:migrate RAILS_ENV=production
 ```
 bundle exec rake db:migrate:reset
 ```
+* Learned how to enable SSL in production environment by uncommenting the following line in config/environments/production.rb:
+
+```
+config.force_ssl = true
+```
+* Learned how to configure a Puma server on Heroku by adding the puma gem to the Gemfile in production, and by creating a config/puma.rb file with content described in Heroku's documentation.
