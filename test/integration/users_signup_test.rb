@@ -20,4 +20,20 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
   end
 
+  # this test does the opposite of the last one: checks to see if valid users
+  # is added ot the database.
+  test "valid signup information" do
+    get signup_path
+    # assert a difference of 1 in the user count
+    assert_difference 'User.count', 1 do
+      # this method arranges to follow the redirect after submission, resulting
+      # in a rendering of the new user page.
+      post_via_redirect users_path, user: { name: "Example User",
+                                            email: "user@example.com",
+                                            password: "password",
+                                            password_confirmation: "password" }
+    end
+    assert_template 'users/show'
+  end
+
 end
