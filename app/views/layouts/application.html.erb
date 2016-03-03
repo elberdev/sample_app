@@ -21,7 +21,11 @@
       additional messages that may be necessary in each page -- example:
       welcome message for newly-registered users. -->
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <!-- these next two lines of code do the same exact thing -->
+        <%= content_tag(:div, message, class: "alert alert-#{ message_type }") %>
+        <!--
+        <div class="alert alert-<%= message_type %>"><%= message %></div> 
+        -->
       <% end %>
 
       <!-- This is where each page's specific individual code will go -->
