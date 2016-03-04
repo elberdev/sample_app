@@ -86,3 +86,14 @@ config.force_ssl = true
 ```
 * Learned how to configure a Puma server on Heroku by adding the puma gem to the Gemfile in production, and by creating a config/puma.rb file with content described in Heroku's documentation.
 * Learned how to use Rails' 'session' method to create a temporary cookie for identification purposes. This cookie is automatically deleted when the browser is closed.
+* Learned about the ||= (or equals) operator in Ruby. It can be used for example to assign a value only if the variable is currently nil:
+
+```
+@current_user = @current_user || User.find_by(id: session[:user_id])
+```
+can be written as:
+
+```
+@current_user ||= User.find_by(id: session[:user_id])
+```
+based on the principle of short-circuit evaluation.

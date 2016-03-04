@@ -8,4 +8,15 @@ module SessionsHelper
     session[:user_id] = user_id
   end
 
+  def current_user
+    # We assign to the instance variable so we pull the id from
+    # the stored cookie only once. We only assign if the variable
+    # is currently nil.
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    !current_user.nil?
+  end
+
 end
