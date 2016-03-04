@@ -5,7 +5,7 @@ module SessionsHelper
     # although permanent cookies are susceptible to a session hijacking attack,
     # this temporary cookie is encripted and is good to go. Cookie is automatically
     # destroyed once the browser is closed.
-    session[:user_id] = user_id
+    session[:user_id] = user.id
   end
 
   def current_user
