@@ -85,3 +85,4 @@ bundle exec rake db:migrate:reset
 config.force_ssl = true
 ```
 * Learned how to configure a Puma server on Heroku by adding the puma gem to the Gemfile in production, and by creating a config/puma.rb file with content described in Heroku's documentation.
+* Learned how to use Rails' 'session' method to create a temporary cookie for identification purposes. This cookie is automatically deleted when the browser is closed.
