@@ -18,9 +18,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # handle successful save. Rails automatically infers here that we are
-      # referring to @user's url
+      # handle successful save by logging them in by default, flashing a
+      # success message, and redirecting them to their user profile page.
+      log_in @user
       flash[:success] = "Welcome to the Sample App!"
+      # Rails automatically infers here that we are referring to @user's url
       redirect_to @user
     else
       render 'new'
