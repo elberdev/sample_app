@@ -18,8 +18,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
     # check that a failed submission re-renders the users/new action
     assert_template 'users/new'
-    assert_select 'div#<CSS id for error explanation>'
-    assert_select 'div.<CSS class for field with error>'
+    # suggested template for checking if errors display properly
+    #assert_select 'div#<CSS id for error explanation>'
+    #assert_select 'div.<CSS class for field with error>'
   end
 
   # this test does the opposite of the last one: checks to see if valid users
