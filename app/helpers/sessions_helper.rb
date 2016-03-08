@@ -8,6 +8,11 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  def log_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
+
   def current_user
     # We assign to the instance variable so we pull the id from
     # the stored cookie only once. We only assign if the variable
