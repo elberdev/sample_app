@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
 
   # this method will be used to help create a user fixture for integration tests
-  # returns the hash digest of the given string
+  # returns the hash digest of the given string. It is set up as a class method
+  # since we need to be able to use it without a User instance (in testing)
   def User.digest(string)
 
     # this line optimizes so we use the minimum hashing cost for testing purposes
@@ -29,4 +30,12 @@ class User < ActiveRecord::Base
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+
+  def User.new_token
+    # use the SecureRandom module from the standard Ruby library to generate
+    # a length-22 random string with each character having 64 distinct possibilities.
+    # The chances of user token collisions is minimal.
+    SecureRandom.urlsafe_base64
+  end
+
 end
