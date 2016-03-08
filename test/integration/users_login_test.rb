@@ -29,7 +29,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  test "login with valid information" do
+  test "login with valid information followed by logout" do
     # load login page
     get login_path
     # try a valid login using our fixture. We insert the password here
@@ -37,6 +37,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # vulnerability by me posting a password here (if someone wants to reverse
     # engineer that hashing algorithm)?
     post login_path, session: { email: @user.email, password: 'password' }
+    # check to make sure we are logged in
+    assert is_logged_in?
     # check that page redirects to user page
     assert_redirected_to @user
     # actually visit the page
@@ -48,6 +50,18 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # check for other links that should be on the page
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
+    # log out
+    delete logout_path
+    # make sure we are not logged in
+    assert_not is_logged_in?
+    # make sure we are redirected to root path
+    assert_redirected_to root_url
+    # follow the redirect
+    follow_redirect!
+    # check that all the proper links are there
+    assert_select "a[href=?]", login_path
+    assert_select "a[href=?]", logout_path, count: 0
+    assert_select "a[href=?]", user_path(@user), count: 0
   end
 
 end
