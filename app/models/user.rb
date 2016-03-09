@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
   # the key word attr_accessor creates both a setter and a getter method for our
-  # remember_token variable.
+  # remember_token variable. this is probably not the safest way to do this
+  # since the unencrypted token can be accessed from outside the class this
+  # way :(
   attr_accessor :remember_token
 
   # this callback method makes sure all emails are converted to lowercase BEFORE
