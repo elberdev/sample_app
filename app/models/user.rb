@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  # remembers a user in the database for use in persistent sessions
   def remember
     # call our class method to generate a new token
     self.remember_token = User.new_token
@@ -49,6 +50,13 @@ class User < ActiveRecord::Base
     # without having to login as the user. We use the other class method, User.digest,
     # to hash the token before storing it.
     update_attribute(:remember_digest, User.digest(remember_token))
+  end
+
+  def authenticated?(remember_token)
+    # compare hashed digest to remember_token to see if they match, using
+    # BCrypt's built-in methods. remember_token here is not the same as the
+    # instance variable... remember_digest is the value from the table column.
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
 end
