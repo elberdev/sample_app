@@ -34,7 +34,7 @@ module SessionsHelper
     # otherwise look for a permanent session cookie. The cookies.signed method
     # decrypts the hashed id if there is a permanent cookie with a hashed
     # user_id.
-    elsif (user_id = cookies.signed(:user_id))
+  elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
       # if there a user by that id and there is a matching permanent remember_token
       # cookie on the machine that matches its remember_digest ...
