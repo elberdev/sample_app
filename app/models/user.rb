@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  # the key word attr_accessor creates both a setter and a getter method for our
+  # remember_token variable.
+  attr_accessor :remember_token
+
   # this callback method makes sure all emails are converted to lowercase BEFORE
   # being saved to the database. Some database adapters use case-sensitive indices
   # but we will prevent that from happening by using the before_save() method.
@@ -36,6 +40,15 @@ class User < ActiveRecord::Base
     # a length-22 random string with each character having 64 distinct possibilities.
     # The chances of user token collisions is minimal.
     SecureRandom.urlsafe_base64
+  end
+
+  def remember
+    # call our class method to generate a new token
+    self.remember_token = User.new_token
+    # this method bypasses validation so we can update the remember_digest hash
+    # without having to login as the user. We use the other class method, User.digest,
+    # to hash the token before storing it.
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 
 end
