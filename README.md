@@ -98,3 +98,8 @@ can be written as:
 ```
 based on the principle of short-circuit evaluation.
 * Learned to use attr_accessor to set up writer and reader (setter and getter) methods for an instance variable.
+* Learned how to fix last commit message using:
+
+```
+git commit --amend
+```
