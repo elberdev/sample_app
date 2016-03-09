@@ -61,4 +61,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
+  # forgets the user (AKA logs out)
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+
+
 end
