@@ -11,6 +11,8 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
+      <!-- by using the classes checkbox and inline, Bootstrap knows to
+      put the checkbox and the span text in the same line -->
       <%= f.label :remember_me, class: 'checkbox inline' do %>
         <%= f.check_box :remember_me %>
         <span>Remember me on this computer</span>
