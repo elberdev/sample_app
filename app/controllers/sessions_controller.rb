@@ -19,7 +19,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    # checks to see if we are logged in before logging out to avoid having any
+    # nil errors
+    log_out if logged_in?
     redirect_to root_url
   end
 

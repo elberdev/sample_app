@@ -56,6 +56,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     # make sure we are redirected to root path
     assert_redirected_to root_url
+    # simulate user clicking logout in a second window
+    delete logout_path
     # follow the redirect
     follow_redirect!
     # check that all the proper links are there

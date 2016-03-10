@@ -55,6 +55,8 @@ class User < ActiveRecord::Base
   end
 
   def authenticated?(remember_token)
+    # return false first if there is no remember_digest to compare to
+    return false if remember_digest.nil?
     # compare hashed digest to remember_token to see if they match, using
     # BCrypt's built-in methods. remember_token here is not the same as the
     # instance variable... remember_digest is the value from the table column.
