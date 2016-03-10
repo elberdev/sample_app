@@ -61,7 +61,7 @@ module SessionsHelper
     user.forget
     # deletes all persistent cookies
     cookies.delete(:user_id)
-    cookied.delete(:remember_token)
+    cookies.delete(:remember_token)
   end
 
 end
