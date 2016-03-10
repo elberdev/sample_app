@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
       # log user in and redirect to user's show page
       # log_in is a sessions_helper method
       log_in user
-      # this helper method will install a session cookie in the user's machine
-      remember user
+      # the remember helper method will install a session cookie in the user's machine
+      # if the user checks off the remember_me checkbox
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
       # create an error message and render new session page again
