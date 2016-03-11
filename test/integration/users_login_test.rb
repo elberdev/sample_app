@@ -66,4 +66,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
 
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    # for some reason the cookies hash here does not work with symbols like
+    # cookies[:remember_token], so we plug in the string
+    assert_not_nil cookies['remember_token']
+  end
+
+  test "login without remembering" do
+    log_in_as(@user, remember_me: '0')
+    assert_nil cookies['remember_token']
+  end
+
 end
