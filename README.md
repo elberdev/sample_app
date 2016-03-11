@@ -71,13 +71,13 @@ $ rails console test
 $ rails server --environment production
 ```
 ```
-bundle exec rake db:migrate RAILS_ENV=production
+$ bundle exec rake db:migrate RAILS_ENV=production
 ```
 * Learned how to use the Byebug gem to create breakpoints and a debugging environment while running an app in the Rails server by simply adding the word 'debugger' to the Ruby code where I want the breakpoint to kick in.
 * Learned how to reset the database:
 
 ```
-bundle exec rake db:migrate:reset
+$ bundle exec rake db:migrate:reset
 ```
 * Learned how to enable SSL in production environment by uncommenting the following line in config/environments/production.rb:
 
@@ -101,5 +101,13 @@ based on the principle of short-circuit evaluation.
 * Learned how to fix last commit message using:
 
 ```
-git commit --amend
+$ git commit --amend
+```
+* Learned to user Heroku's maintenance mode while pushing changes to website, doing migrations. Example:
+
+```
+$ heroku maintenance:on
+$ git push heroku
+$ heroku run rake db:migrate
+$ heroku maintenance:off
 ```
