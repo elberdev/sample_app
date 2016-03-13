@@ -70,7 +70,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     log_in_as(@user, remember_me: '1')
     # for some reason the cookies hash here does not work with symbols like
     # cookies[:remember_token], so we plug in the string
-    assert_not_nil cookies['remember_token']
+    assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
 
   test "login without remembering" do

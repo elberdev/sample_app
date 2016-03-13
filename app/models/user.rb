@@ -25,23 +25,26 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
 
-  # this method will be used to help create a user fixture for integration tests
-  # returns the hash digest of the given string. It is set up as a class method
-  # since we need to be able to use it without a User instance (in testing)
-  def User.digest(string)
+  # This is one of the many ways to define class methods. See prior commit
+  # for original version 
+  class << self
+    # this method will be used to help create a user fixture for integration tests
+    # returns the hash digest of the given string. It is set up as a class method
+    # since we need to be able to use it without a User instance (in testing)
+    def digest(string)
+      # this line optimizes so we use the minimum hashing cost for testing purposes
+      # but secure enough cost in production
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                    BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
 
-    # this line optimizes so we use the minimum hashing cost for testing purposes
-    # but secure enough cost in production
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
-
-  def User.new_token
-    # use the SecureRandom module from the standard Ruby library to generate
-    # a length-22 random string with each character having 64 distinct possibilities.
-    # The chances of user token collisions is minimal.
-    SecureRandom.urlsafe_base64
+    def new_token
+      # use the SecureRandom module from the standard Ruby library to generate
+      # a length-22 random string with each character having 64 distinct possibilities.
+      # The chances of user token collisions is minimal.
+      SecureRandom.urlsafe_base64
+    end
   end
 
   # remembers a user in the database for use in persistent sessions
