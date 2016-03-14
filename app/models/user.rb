@@ -23,10 +23,10 @@ class User < ActiveRecord::Base
 
   # method to create a secure password
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # This is one of the many ways to define class methods. See prior commit
-  # for original version 
+  # for original version
   class << self
     # this method will be used to help create a user fixture for integration tests
     # returns the hash digest of the given string. It is set up as a class method
