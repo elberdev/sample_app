@@ -8,6 +8,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful edit" do
+    # need to do this otherwise we will be redirected to login page
+    log_in_as(@user)
     # load user account settings page
     get edit_user_path(@user)
     # verify that it loaded properly
@@ -23,6 +25,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful edit" do
+    log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
     name = "Foo Bar"
