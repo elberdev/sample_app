@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     #see private method below for a more specific and safer implementation
 
     @user = User.new(user_params)
-
     if @user.save
       # handle successful save by logging them in by default, flashing a
       # success message, and redirecting them to their user profile page.
@@ -31,6 +30,16 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # Handle successful update
+    else
+      # re-render the edit page
+      render 'edit'
+    end
   end
 
   private
