@@ -21,8 +21,10 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  # method to create a secure password
+  # method to create a secure password. This catches nil passwords in the
+  # creation phase and also stores hashed passwords
   has_secure_password
+  # this one allows nil passwords for an edited users attributes hash
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # This is one of the many ways to define class methods. See prior commit
