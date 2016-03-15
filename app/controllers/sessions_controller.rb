@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       # the remember helper method will install a session cookie in the user's machine
       # if the user checks off the remember_me checkbox
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_to @user
+      # session_helper method
+      redirect_back_or(@user)
     else
       # create an error message and render new session page again
       flash.now[:danger] = 'Invalid email/password combination' #sorta

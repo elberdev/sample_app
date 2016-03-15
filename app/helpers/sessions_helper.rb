@@ -73,4 +73,21 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
+  # Redirects to stored location or default. To be used for friendly forwarding
+  def redirect_back_or(default)
+    # this evaluates to a forwarding url unless it's nil, in which case it
+    # will use our default url, which is the user profile page
+    redirect_to(session[:forwarding_url] || default)
+    # delete temporary cookie with forwarding url info right after we use it
+    # to prevent future unintended redirects
+    session.delete(:forwarding_url)
+  end
+
+  # Stores the url trying to be accessed
+  def store_location
+    # store in a temporary cookie if there is a get request. This prevents a
+    # GET redirect from happening by accident during POST, PATCH or DELETE requests.
+    session[:forwarding_url] = request.url if request.get?
+  end
+
 end

@@ -62,6 +62,9 @@ class UsersController < ApplicationController
     # confirms a logged-in user
     def logged_in_user
       unless logged_in?
+        # store intended location to be used for friendly forwarding after
+        # the user properly logs in
+        store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
