@@ -132,3 +132,4 @@ class << self
 end
 ```
 * Learned how to access instance variables and their attributes from other classes inside tests using the assigns() method. The assigns method is a hash that gives access in a test to all instance variables that would ordinarily be available to a view. Calling @user.remember_token in our integration users_login_test.rb would return nil, but calling assigns(:user).remember_token returns the value we are looking for.
+* Learned how to use Faker gem to add users for the development environment.
