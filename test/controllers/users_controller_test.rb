@@ -42,4 +42,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  # make sure that if user in not properly logged in, a call to the index
+  # path redirects to login page
+  test "should redirect index when not logged in" do
+    get :index
+    assert_redirected_to login_url
+  end
+
 end

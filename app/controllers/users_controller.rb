@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
   # we set the before action and which actions it will be used with.
   # scroll down to private section to see the method implementation
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :index]
   # make sure we have the correct user before carrying out any edit or update
   before_action :correct_user,   only: [:edit, :update]
+
+  # action to show all users
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
