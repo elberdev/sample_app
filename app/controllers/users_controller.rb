@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   # action to show all users
   def index
-    @users = User.all
+    # calling the paginate method returns users in chunks of 30 by default
+    @users = User.paginate(page: params[:page])
   end
 
   def show
