@@ -70,9 +70,9 @@ class UsersController < ApplicationController
     # confirms the correct user
     def correct_user
       @user = User.find(params[:id])
-      # current_user is a sessions_helper method. The user of the params hash has
+      # current_user?() is a sessions_helper method. The user of the params hash has
       # to match the current user or will be redirected to root
-      redirect_to(root_url) unless @user == current_user
+      redirect_to(root_url) unless current_user?(@user)
     end
 
 end
