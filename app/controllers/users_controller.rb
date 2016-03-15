@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # we set the before action and which actions it will be used with.
   # scroll down to private section to see the method implementation
-  #before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
