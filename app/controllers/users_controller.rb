@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   # we set the before action and which actions it will be used with.
   # scroll down to private section to see the method implementation
   before_action :logged_in_user, only: [:edit, :update]
+  # make sure we have the correct user before carrying out any edit or update
+  before_action :correct_user,   only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -32,11 +34,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # don't need this anymore because @user is now defined in correct_user
+    # method before any action is taken on the edit and update methods
+    #@user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     if @user.update_attributes(user_params)
       # give confirmation of successful update
       flash[:success] = "Profile updated"
@@ -61,6 +65,14 @@ class UsersController < ApplicationController
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
+    end
+
+    # confirms the correct user
+    def correct_user
+      @user = User.find(params[:id])
+      # current_user is a sessions_helper method. The user of the params hash has
+      # to match the current user or will be redirected to root
+      redirect_to(root_url) unless @user == current_user
     end
 
 end
