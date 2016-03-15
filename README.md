@@ -143,3 +143,4 @@ $ bundle exec rake db:migrate:reset
 ```
 $ bundle exec rake db:seed
 ```
+* Learned to use a pagination method in Rails to break up information across multiple pages by including the gem 'will_paginate' and its bootstrap configuration 'bootstrap-will_paginate'
