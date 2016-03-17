@@ -6,10 +6,9 @@
 
 <ul class="users">
   <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 50 %>
-      <%= link_to user.name, user %>
-    </li>
+    <!-- Rails infers you want to go through each user and render them using
+    the user partial -->
+    <%= render @users %>
   <% end %>
 </ul>
 
