@@ -60,6 +60,9 @@ class UsersController < ApplicationController
 
   private
     def user_params
+      # notice admin? is conspicuously missing from the permit key list. We do
+      # not want anyone to be able to change that parameter on the interwebs. It
+      # would be a huge security hole.
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
