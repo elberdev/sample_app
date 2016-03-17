@@ -10,7 +10,8 @@
 User.create!(name: "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
-             password_confirmation: "foobar")
+             password_confirmation: "foobar",
+             admin: true)
 
 # create 99 more of them using Faker and some default values
 99.times do |n|
