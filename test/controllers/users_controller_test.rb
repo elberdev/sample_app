@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
 
-  test "should redirect edit when logges in as wrong user" do
+  test "should redirect edit when logged in as wrong user" do
     # log in as wrong user
     log_in_as @other_user
     # try to edit someone else's user settings
@@ -47,6 +47,23 @@ class UsersControllerTest < ActionController::TestCase
   test "should redirect index when not logged in" do
     get :index
     assert_redirected_to login_url
+  end
+
+  test "should redirect destroy when not logged in" do
+    # try to delete a user and assert there is no difference in the user count
+    assert_no_difference 'User.count' do
+      delete :destroy, id: @user
+    end
+    assert_redirected_to login_url
+  end
+
+  test "should redirect destroy when logged in as a non-admin" do
+    # log in as non-admin user first
+    log_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete :destroy, id: @user
+    end
+    assert_redirected_to root_url
   end
 
 end
