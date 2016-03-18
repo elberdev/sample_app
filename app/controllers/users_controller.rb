@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # we set the before action and which actions it will be used with.
   # scroll down to private section to see the method implementation
-  before_action :logged_in_user, only: [:edit, :update, :index]
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   # make sure we have the correct user before carrying out any edit or update
   before_action :correct_user,   only: [:edit, :update]
 
@@ -56,6 +56,12 @@ class UsersController < ApplicationController
       # re-render the edit page
       render 'edit'
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
 
   private
