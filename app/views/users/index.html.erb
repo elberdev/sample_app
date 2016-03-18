@@ -5,11 +5,9 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
-    <!-- Rails infers you want to go through each user and render them using
-    the user partial -->
-    <%= render @users %>
-  <% end %>
+  <!-- Rails infers you want to go through each user and render them using
+  the user partial -->
+  <%= render @users %>
 </ul>
 
 <%= will_paginate %>
