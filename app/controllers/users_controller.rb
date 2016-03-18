@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   # make sure we have the correct user before carrying out any edit or update
   before_action :correct_user,   only: [:edit, :update]
+  # make sure only an adimin can access the destroy action itself
+  before_action :admin_user,     only: [:destroy]
 
   # action to show all users
   def index
@@ -91,6 +93,11 @@ class UsersController < ApplicationController
       # current_user?() is a sessions_helper method. The user of the params hash has
       # to match the current user or will be redirected to root
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    # confirms an admin user
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 
 end

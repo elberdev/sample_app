@@ -3,7 +3,10 @@
   <%= link_to user.name, user %>
   <!-- if current user is an admin and not deleting himself -->
   <% if current_user.admin? && !current_user?(user) %>
-    <!-- enable delete button -->
+    <!-- enable delete button. Unfortunately this security bit only relates
+    to the button. The action itself is still insecure and could be done variable
+    command line bypassing the delete button. To secure the action itself we must
+    add a before action in the users_controller.rb file -->
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
