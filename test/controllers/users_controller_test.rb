@@ -42,12 +42,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
-  #test "should not allow the admin attribute to be edited via the web" do
-  #  log_in_as(@other_user)
-  #  assert_not @other_user.admin?
-  #  patch :update, id: @other_user, user: { password
-  #    
-  #  }
+  test "should not allow the admin attribute to be edited via the web" do
+    log_in_as(@other_user)
+    assert_not @other_user.admin?
+    patch :update, id: @other_user, user: { name: @other_user.name,
+                                            email: @other_user.email,
+                                            password: "",
+                                            password_confirmation: "",
+                                            admin: true
+                                          }
+    assert_not @other_user.reload.admin?
+  end
 
   # make sure that if user in not properly logged in, a call to the index
   # path redirects to login page
