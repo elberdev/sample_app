@@ -1,17 +1,14 @@
 class User < ActiveRecord::Base
 
   # the key word attr_accessor creates both a setter and a getter method for our
-  # remember_token variable. this is probably not the safest way to do this
-  # since the unencrypted token can be accessed from outside the class this
-  # way :(
-  attr_accessor :remember_token
+  # remember_token variable.
+  attr_accessor :remember_token, :activation_token
 
   # this callback method makes sure all emails are converted to lowercase BEFORE
   # being saved to the database. Some database adapters use case-sensitive indices
   # but we will prevent that from happening by using the before_save() method.
-  before_save { self.email = email.downcase } # the word self is optional on the right side
-  # could also be written as
-  #before_save { email.downcase! }
+  before_save :downcase_email
+  before_create :create_activation_digest
 
   # this is the method that is called when we test using @user.valid?
   validates :name, presence: true, length: { maximum: 50 }
@@ -73,5 +70,18 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
+  # private methods can only be called within the class
+  private
+
+    def downcase_email
+      self.email = email.downcase # the word self is optional on the right side
+      # could also be written as
+      #email.downcase!
+    end
+
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 
 end
