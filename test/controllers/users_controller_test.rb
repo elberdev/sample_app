@@ -26,7 +26,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should redirect edit when logged in as wrong user" do
     # log in as wrong user
-    log_in_as @other_user
+    log_in_as(@other_user)
     # try to edit someone else's user settings
     get :edit, id: @user
     assert flash.empty?
@@ -36,11 +36,18 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should redirect update when logged in as wrong user" do
-    log_in_as @other_user
+    log_in_as(@other_user)
     patch :update, id: @user, user: { name: @user.name, email: @user.email }
     assert flash.empty?
     assert_redirected_to root_url
   end
+
+  #test "should not allow the admin attribute to be edited via the web" do
+  #  log_in_as(@other_user)
+  #  assert_not @other_user.admin?
+  #  patch :update, id: @other_user, user: { password
+  #    
+  #  }
 
   # make sure that if user in not properly logged in, a call to the index
   # path redirects to login page
