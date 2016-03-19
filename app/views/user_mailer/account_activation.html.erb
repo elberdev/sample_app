@@ -1,5 +1,16 @@
-<h1>UserMailer#account_activation</h1>
+<h1>Sample App</h1>
+
+<p>Hi <%= @user.name %>,</p>
 
 <p>
-  <%= @greeting %>, find me in app/views/user_mailer/account_activation.html.erb
+Welcome to the Sample App! Click on the link below to activate your account:
 </p>
+
+<!-- the edit_account_activation_url method will generate a url like this:
+
+    account_activations/q5lt38hQDc_959PVoo6b7A/edit?email=foo%40example.com
+
+...where the included parameters are the user activation token followed by
+a query containing the user's email. -->
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>
