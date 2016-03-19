@@ -150,3 +150,9 @@ $ bundle exec rake db:seed
 $ heroku run rake db:seed
 ```
 * Learned to use a pagination method in Rails to break up information across multiple pages by including the gem 'will_paginate' and its bootstrap configuration 'bootstrap-will_paginate'
+* Learned how to generate mailers in Rails. A mailer adds email functionality to our app/site. As an example, this is the creation of a mailer with a method for account activation and a method for password reset:
+
+```
+$ rails generate mailer UserMailer account_activation password_reset
+```
+This command will also generate two views for each method. One view for plain text email and another for html emails.
