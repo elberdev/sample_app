@@ -2,6 +2,10 @@ require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
+  # because the deliveries array is global, we have to reset it to empty here
+  # so we can change that it contains one delivery later in the tests. If another
+  # test results in deliveries and we don't reset it here, we will have an
+  # unexpectedly failing test.
   def setup
     ActionMailer::Base.deliveries.clear
   end
