@@ -30,12 +30,12 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)
     if @user.save
-      # handle successful save by logging them in by default, flashing a
-      # success message, and redirecting them to their user profile page.
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      # handle successful save by starting account activation process and
+      # redirecting them to the root path
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
       # Rails automatically infers here that we are referring to @user's url
-      redirect_to @user
+      redirect_to root_url
     else
       render 'new'
     end
