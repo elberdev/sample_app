@@ -156,3 +156,5 @@ $ heroku run rake db:seed
 $ rails generate mailer UserMailer account_activation password_reset
 ```
 This command will also generate two views for each method. One view for plain text email and another for html emails.
+* Learned to change the default configurations for different environments in config/environments.
+* Learned how to preview mailer emails by configuring test/mailers/previews/NAME_OF_MAILER_preview.rb
