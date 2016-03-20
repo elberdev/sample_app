@@ -56,13 +56,18 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  def authenticated?(remember_token)
-    # return false first if there is no remember_digest to compare to
-    return false if remember_digest.nil?
-    # compare hashed digest to remember_token to see if they match, using
-    # BCrypt's built-in methods. remember_token here is not the same as the
-    # instance variable... remember_digest is the value from the table column.
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  # this method is used for email authentication before activating a new account,
+  # and also for login authentication via a long term cookie installed in the
+  # user's computer.
+  def authenticated?(attribute, token)
+    # here the attribute can be either remember or activation
+    digest = send("#{attribute}_digest")
+    # return false if there is no digest to compare to
+    return false if digest.nil?
+    # compare hashed digest to remember_token or activation_token to see if they
+    # match, using BCrypt's built-in methods. remember_digest and activation_digest
+    # are user attributes from the db table.
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   # forgets the user (AKA logs out)
