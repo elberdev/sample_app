@@ -78,7 +78,7 @@ class UserTest < ActiveSupport::TestCase
   # ensure before we compare digest to token that it is not in fact nil
   # to avoid a BCrypt error
   test "authenticated? should return false for a user with nil digest" do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 
 end

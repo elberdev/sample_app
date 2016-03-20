@@ -51,7 +51,7 @@ module SessionsHelper
       user = User.find_by(id: user_id)
       # if there a user by that id and there is a matching permanent remember_token
       # cookie on the machine that matches its remember_digest ...
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         # log in the user first as there is no current temp session
         log_in user
         # set current_user to our user from the database
