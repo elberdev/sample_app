@@ -41,6 +41,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                password_confirmation: "password" }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
+    # the assigns() method lets us use an instance variable from the corresponding
+    # controller action we are in right now. In this case we are accessing the
+    # @user variable for user here.
     user = assigns(:user)
     assert_not user.activated?
     assert_not flash.empty?
