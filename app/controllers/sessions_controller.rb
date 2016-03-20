@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
       # if user has been activated, log in, remember if applicable and redirect
-      if user.activated?
+      if @user.activated?
         # log user in and redirect to user's show page
         # log_in is a sessions_helper method
         log_in @user
