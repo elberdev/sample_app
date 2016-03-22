@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     if @user.save
       # handle successful save by starting account activation process and
       # redirecting them to the root path
-      UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       # Rails automatically infers here that we are referring to @user's url
       redirect_to root_url
