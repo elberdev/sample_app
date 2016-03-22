@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
   # the key word attr_accessor creates both a setter and a getter method for our
-  # remember_token variable.
-  attr_accessor :remember_token, :activation_token
+  # virtual variables.
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   # this callback method makes sure all emails are converted to lowercase BEFORE
   # being saved to the database. Some database adapters use case-sensitive indices
@@ -84,6 +84,16 @@ class User < ActiveRecord::Base
   # sends activation email
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  # sets the password resets attributes
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  def send_password_reset_email
   end
 
   # private methods can only be called within the class
