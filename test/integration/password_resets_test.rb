@@ -36,6 +36,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     # Right email, right token
     get edit_password_reset_path(user.reset_token, email: user.email)
     assert_template 'password_resets/edit'
+    # this tests for the hidden input tag in our app/views/password_resets/edit.html.erb
     assert_select "input[name=email][type=hidden][value=?]", user.email
     # Invalid password & confirmation
     patch password_reset_path(user.reset_token),
