@@ -97,6 +97,12 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
+  def password_reset_expired?
+    # this means "reset sent earlier than 2 hours ago", returning true
+    # if the request is expired
+    reset_sent_at < 2.hours.ago
+  end
+
   # private methods can only be called within the class
   private
 
