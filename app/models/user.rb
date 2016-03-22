@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
   end
 
   # private methods can only be called within the class
