@@ -4,9 +4,11 @@ class MicropostTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    # This code is not idiomatically correct, but I'll learne the correct
-    # way later.
-    @micropost = Micropost.new(content: "Lorem ipsum", user_id: @user.id)
+    # This code is not idiomatically correct, because of the belongs_to and
+    # has_many realtionships between a user and his microposts. The correct
+    # way is the uncommented version
+    #@micropost = Micropost.new(content: "Lorem ipsum", user_id: @user.id)
+    @micropost = @user.microposts.build(content: "Lorem ipsum")
   end
 
   test "should be valid" do
