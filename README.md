@@ -1,6 +1,6 @@
 # Sample App
 
-Hartl's *Ruby on Rails Tutorial* chapter 03 through 10
+Hartl's *Ruby on Rails Tutorial* chapter 03 through 11
 
 #### Takeaways
 * Learned some commands for undoing things in Rails. For example:
