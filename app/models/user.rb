@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :microposts
-  
+  # the dependent: :destroy bit is to ensure if a user is deleted all his microposts
+  # are deleted as well.
+  has_many :microposts, dependent: :destroy
+
   # the key word attr_accessor creates both a setter and a getter method for our
   # virtual variables.
   attr_accessor :remember_token, :activation_token, :reset_token
