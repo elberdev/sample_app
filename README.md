@@ -158,3 +158,11 @@ $ rails generate mailer UserMailer account_activation password_reset
 This command will also generate two views for each method. One view for plain text email and another for html emails.
 * Learned to change the default configurations for different environments in config/environments.
 * Learned how to preview mailer emails by configuring test/mailers/previews/NAME_OF_MAILER_preview.rb
+* Learned how to configure SMTP setting for production in config/environments/production.rb
+* Learned how to set up production email sending via Heroku's SendGrid free tier.
+* Learned how to check environment variables for SendGrid username and password:
+
+```
+$ heroku config:get SENDGRID_USERNAME
+$ heroku config:get SENDGRID_PASSWORD
+```
