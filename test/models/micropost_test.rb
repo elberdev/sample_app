@@ -30,4 +30,10 @@ class MicropostTest < ActiveSupport::TestCase
     assert_not @micropost.valid?
   end
 
+  # make sure the first micropost displayed is the most recent.
+  # Micropost.first calls the first of the micropost fixtures. See microposts.yml
+  test "order should be more recent first" do
+    assert_equal microposts(:most_recent), Micropost.first
+  end
+
 end
