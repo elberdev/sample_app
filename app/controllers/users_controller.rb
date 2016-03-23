@@ -10,11 +10,12 @@ class UsersController < ApplicationController
   # action to show all users
   def index
     # calling the paginate method returns users in chunks of 30 by default
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
