@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     redirect_to root_url and return unless @user.activated?
+    # we need to define this variable here in order for our pagination of
+    # microposts to work in the user profile page.
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def new
