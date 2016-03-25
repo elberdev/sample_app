@@ -26,4 +26,16 @@ User.create!(name:                  "Example User",
                password_confirmation: password,
                activated:             true,
                activated_at:          Time.zone.now)
+
+  # Take first six seeded users in the order they were created
+  users = User.order(:created_at).take(6)
+  # give them each 50 seed posts, alternating the creating in such a
+  # way that the timestamps will load alternating users in the main feed,
+  # NOT 50 posts from one user followed by 50 from another and so on...
+  50.times do
+    # user Faker gem's lorem ipsum generator
+    content = Faker::Lorem.sentence(5)
+    users.each { |user| user.microposts.create!(content: content) }
+  end
+  
 end
