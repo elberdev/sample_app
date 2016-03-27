@@ -5,7 +5,7 @@ for the class instance you're trying to create -->
 <%= form_for(@user) do |f| %>
 
   <!-- we're going to render an error message partial -->
-  <%= render 'shared/error_messages' %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <!-- form-control is a tag with special meaning to Bootstrap -->
   <%= f.label :name %>
