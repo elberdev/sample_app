@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   # create RESTful routes for the password resets actions
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  # we need less config actions here since we will rely on the profile and home pages
+  # to display the microposts. This allows us to cut out some actions here
+  resources :microposts,          only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
