@@ -107,6 +107,9 @@ class User < ActiveRecord::Base
   # Defines a proto-feed
   # See "following users" for the full implementation
   def feed
+    # the ? in the string escapes the user id variable. It is always a good
+    # idea to escape variables injected into SQL statements to avoid a particular
+    # vulnerability called an SQL injection.
     Micropost.where("user_id = ?", id)
   end
 
