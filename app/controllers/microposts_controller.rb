@@ -7,6 +7,9 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
+      # passing an empty array here keeps our app from breaking when the
+      # user submits an invalid blank micropost. Not final implementation.
+      @feed_items = []
       render 'static_pages/home'
     end
   end
