@@ -28,7 +28,7 @@ class MicropostsController < ApplicationController
     # We define strong params here to allow only content to be edited through
     # the internet.
     def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :picture)
     end
 
     # this method attempts to find the associated post to be deleted inside
