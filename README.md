@@ -166,9 +166,10 @@ This command will also generate two views for each method. One view for plain te
 $ heroku config:get SENDGRID_USERNAME
 $ heroku config:get SENDGRID_PASSWORD
 ```
-* Learned to use carrierwave, mini_magick and fog gems for image uploading and resizing.
+* Learned to use carrierwave, and fog gems for image uploading.
 * With CarrierWave we can generate an image uploader as so:
 
 ```
 $ rails generate uploader Picture
 ```
+* Learned how to use mini_magick gem for resizing user-uploaded images. mini_magick is a carrierwave interface for image_magick.
