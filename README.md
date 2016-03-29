@@ -167,3 +167,8 @@ $ heroku config:get SENDGRID_USERNAME
 $ heroku config:get SENDGRID_PASSWORD
 ```
 * Learned to use carrierwave, mini_magick and fog gems for image uploading and resizing.
+* With CarrierWave we can generate an image uploader as so:
+
+```
+$ rails generate uploader Picture
+```
