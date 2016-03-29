@@ -7,10 +7,14 @@
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="picture">
     <!-- field to upload picture -->
+    <!-- added file name front-end validation -->
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
   </span>
 <% end %>
 
+<!-- added file size front-end validation. This is here to make our lives easier,
+but we cannot rely on this to replace the server-side validation. Anyone can edit
+the html and javascript here on a browser and send the files our way anyway. -->
 <script type="text/javascript">
   $('#micropost_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
