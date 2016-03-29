@@ -166,3 +166,4 @@ This command will also generate two views for each method. One view for plain te
 $ heroku config:get SENDGRID_USERNAME
 $ heroku config:get SENDGRID_PASSWORD
 ```
+* Learned to use carrierwave, mini_magick and fog gems for image uploading and resizing.
