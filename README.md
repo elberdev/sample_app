@@ -178,3 +178,10 @@ $ rails generate uploader Picture
 ```
 $ brew install imagemagick
 ```
+* Learned how to configure Heroku environment to work with Amazon Web Services S3 bucket and IAM user credentials, after setting them up on the AWS website:
+
+```
+$ heroku config:set S3_ACCESS_KEY=<access key>
+$ heroku config:set S3_SECRET_KEY=<secret key>
+$ heroku config:set S3_BUCKET=<bucket name>
+```
