@@ -38,3 +38,6 @@ bower.json
 
 # Ignore Spring files.
 /spring/*.pid
+
+# Ignore local image uploads folder
+/public/uploads
