@@ -173,3 +173,8 @@ $ heroku config:get SENDGRID_PASSWORD
 $ rails generate uploader Picture
 ```
 * Learned how to use mini_magick gem for resizing user-uploaded images. mini_magick is a carrierwave interface for image_magick.
+* To make sure image_magick is installed on OSX (image_magick should already be installed on Heroku):
+
+```
+$ brew install imagemagick
+```
