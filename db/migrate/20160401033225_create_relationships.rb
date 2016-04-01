@@ -8,6 +8,8 @@ class CreateRelationships < ActiveRecord::Migration
     end
     add_index :relationships, :follower_id
     add_index :relationships, :followed_id
+    # this part enforces uniqueness. A user cannot create the same relationship
+    # to another user more than once
     add_index :relationships, [:follower_id, :followed_id], unique: true
   end
 end
