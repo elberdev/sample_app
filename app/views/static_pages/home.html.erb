@@ -1,32 +1,6 @@
 <!-- This is the part that will render if the user is logged in -->
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="col-md-8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
+  <%= render 'static_pages/logged_in' %>
 <% else %>
-  <!-- this is the part that will render if the user is not logged / has not
-  signed up yet -->
-  <div class="center jumbotron">
-    <h1>Welcome to the Sample App</h1>
-    <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-    <!-- Link for our sign up form. The CSS classes are particular to Bootstrap -->
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-  </div>
-  <!-- The image_tag function looks for a pic with that name in the app/assets/images folder -->
-  <%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>
+  <%= render 'static_pages/not_logged_in' %>
 <% end %>
