@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # we set the before action and which actions it will be used with.
   # scroll down to private section to see the method implementation
-  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy,
+                                        :following, :followers]
   # make sure we have the correct user before carrying out any edit or update
   before_action :correct_user,   only: [:edit, :update]
   # make sure only an adimin can access the destroy action itself
@@ -68,6 +69,22 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url
+  end
+
+  # display people the user is following
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  # display people who follow the user
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
