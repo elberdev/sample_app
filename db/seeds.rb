@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# USERS
 
 # create example user
 User.create!(name:                  "Example User",
@@ -28,6 +22,8 @@ User.create!(name:                  "Example User",
                activated_at:          Time.zone.now)
 end
 
+# MICROPOSTS
+
 # Take first six seeded users in the order they were created
 users = User.order(:created_at).take(6)
 # give them each 50 seed posts, alternating the creating in such a
@@ -38,3 +34,15 @@ users = User.order(:created_at).take(6)
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.microposts.create!(content: content) }
 end
+
+# RELATIONSHIPS
+
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+# first user follows users 3-51
+following.each { |followed| user.follow(followed) }
+# users 4-41 follow first user back
+followers.each { |follower| follower.follow(user) }
+# This way we have some variety of relationships
