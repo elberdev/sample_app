@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  resources :users
+  # this will arrange for the following url: /users/1/following and /users/1/followers
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   # this will create an account activations named route but only for the edit action
   resources :account_activations, only: [:edit]
   # create RESTful routes for the password resets actions
