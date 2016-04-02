@@ -2,9 +2,12 @@ class User < ActiveRecord::Base
   # the dependent: :destroy bit is to ensure if a user is deleted all his microposts
   # are deleted as well.
   has_many :microposts, dependent: :destroy
-  has_many :active_relationships, class_name: "Relationship", 
+  has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent: :destroy
+  # customized name of attribute to "following" instead of the awkward "followeds".
+  # As long as we tell rails the source is "followed", then we're good.
+  has_many :following, through: :active_relationships, source: :followed
 
   # the key word attr_accessor creates both a setter and a getter method for our
   # virtual variables.
