@@ -33,7 +33,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
   end
 
   test "should follow a user the Ajax way" do
-    assert_difference '@user.follwoing.count', 1 do
+    assert_difference '@user.following.count', 1 do
       xhr :post, relationships_path, followed_id: @other.id
     end
   end
@@ -42,7 +42,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
     @user.follow(@other)
     relationship = @user.active_relationships.find_by(followed_id: @other.id)
     assert_difference '@user.following.count', -1 do
-      delete relationships_path(relationship)
+      delete relationship_path(relationship)
     end
   end
 
@@ -50,7 +50,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
     @user.follow(@other)
     relationship = @user.active_relationships.find_by(followed_id: @other.id)
     assert_difference '@user.following.count', -1 do
-      delete relationships_path(relationship)
+      xhr :delete, relationship_path(relationship)
     end
   end
 
