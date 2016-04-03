@@ -186,3 +186,4 @@ $ heroku config:set S3_SECRET_KEY=<secret key>
 $ heroku config:set S3_BUCKET=<bucket name>
 ```
 * Learned to set up individual S3 permissions for each user in IAM Management Console (AmazonS3FullAccess)
+* Learned to use Ajax for asynchronous server requests that do not leave the page. When using the form_for method, add the additional parameter 'remote: true'
