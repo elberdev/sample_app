@@ -1,0 +1,4 @@
+// this code renders reloads the follow_form and the followers count without
+// leaving the page.
+$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
+$("#followers").html('<%= @user.followers.count %>');

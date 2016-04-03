@@ -186,4 +186,12 @@ $ heroku config:set S3_SECRET_KEY=<secret key>
 $ heroku config:set S3_BUCKET=<bucket name>
 ```
 * Learned to set up individual S3 permissions for each user in IAM Management Console (AmazonS3FullAccess)
-* Learned to use Ajax for asynchronous server requests that do not leave the page. When using the form_for method, add the additional parameter 'remote: true'
+* Learned to use Ajax for asynchronous server requests that do not leave the page. First, when using the form_for method, add the additional parameter 'remote: true'. Then add the following method to the relevant methods (in this case create and destroy) in the controller to run the javascript code:
+
+```
+respond_to do |format|
+  format.html { ...stuff... }
+  format.js
+end
+```
+The regular html bits are in the braces and the js code is in a separate file (create.js.erb or destroy.js.erb in this example).
