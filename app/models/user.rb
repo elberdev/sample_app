@@ -117,12 +117,14 @@ class User < ActiveRecord::Base
   # Defines a proto-feed
   # See "following users" for the full implementation
   def feed
-    # the ? in the string escapes the user id variable. It is always a good
-    # idea to escape variables injected into SQL statements to avoid a particular
-    # vulnerability called an SQL injection.
     # This SQL query returns entries from people the user is following plus
-    # his/her own posts
-    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+    # his/her own posts. This version is optimized to be more scalable than
+    # the version in prior commits. The subselect lets the database do the
+    # heavy-lifting internally.
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                    OR user_id = :user_id", user_id: id)
   end
 
   # CONVENIENCE METHODS FOR FOLLOWING FUNCTIONALITY
