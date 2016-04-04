@@ -120,7 +120,9 @@ class User < ActiveRecord::Base
     # the ? in the string escapes the user id variable. It is always a good
     # idea to escape variables injected into SQL statements to avoid a particular
     # vulnerability called an SQL injection.
-    Micropost.where("user_id = ?", id)
+    # This SQL query returns entries from people the user is following plus
+    # his/her own posts
+    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
   end
 
   # CONVENIENCE METHODS FOR FOLLOWING FUNCTIONALITY
